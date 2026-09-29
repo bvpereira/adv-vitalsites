@@ -9,12 +9,11 @@ window.addEventListener('scroll',()=>header?.classList.toggle('is-fixed',window.
 const revealObserver=new IntersectionObserver((entries,observer)=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');observer.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -40px'});
 document.querySelectorAll('.reveal').forEach(element=>revealObserver.observe(element));
 
-const prefersReducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const counterTimers=new WeakMap();
-const animateCounter=counter=>{const target=Number(counter.dataset.count),suffix=counter.dataset.suffix||'',digits=String(target).length,start=performance.now();const update=now=>{const progress=Math.min((now-start)/1200,1),eased=1-Math.pow(1-progress,3),value=Math.floor(target*eased);counter.textContent=String(value).padStart(digits,'0')+suffix;if(progress<1)requestAnimationFrame(update)};requestAnimationFrame(update)};
-const startCounterLoop=counter=>{if(counterTimers.has(counter))return;if(prefersReducedMotion){counter.textContent=counter.dataset.count+(counter.dataset.suffix||'');return}animateCounter(counter);const timer=window.setInterval(()=>animateCounter(counter),6200);counterTimers.set(counter,timer)};
+const animateCounter=counter=>{const target=Number(counter.dataset.count),suffix=counter.dataset.suffix||'';counter.textContent='0'+suffix;window.setTimeout(()=>{const start=performance.now();const update=now=>{const progress=Math.min((now-start)/2800,1),eased=1-Math.pow(1-progress,3),value=Math.floor(target*eased);counter.textContent=String(value)+suffix;if(progress<1)requestAnimationFrame(update)};requestAnimationFrame(update)},350)};
+const startCounterLoop=counter=>{if(counterTimers.has(counter))return;animateCounter(counter);const timer=window.setInterval(()=>animateCounter(counter),7200);counterTimers.set(counter,timer)};
 const stopCounterLoop=counter=>{const timer=counterTimers.get(counter);if(timer){clearInterval(timer);counterTimers.delete(counter)}};
-const counterObserver=new IntersectionObserver(entries=>entries.forEach(entry=>entry.isIntersecting?startCounterLoop(entry.target):stopCounterLoop(entry.target)),{threshold:.55});
+const counterObserver=new IntersectionObserver(entries=>entries.forEach(entry=>entry.isIntersecting?startCounterLoop(entry.target):stopCounterLoop(entry.target)),{threshold:.25});
 document.querySelectorAll('[data-count]').forEach(counter=>counterObserver.observe(counter));
 
 const gallery=document.querySelector('[data-gallery-track]');
