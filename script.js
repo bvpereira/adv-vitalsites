@@ -17,6 +17,15 @@ const counterObserver=new IntersectionObserver(entries=>entries.forEach(entry=>e
 document.querySelectorAll('[data-count]').forEach(counter=>counterObserver.observe(counter));
 
 const gallery=document.querySelector('[data-gallery-track]');
+const timeline=document.querySelector('.process ol');
+if(timeline){
+  const steps=[...timeline.querySelectorAll('li')];
+  let timelineTimer,currentStep=0;
+  const showStep=()=>steps.forEach((step,index)=>{step.classList.toggle('is-reached',index<=currentStep);step.classList.toggle('is-current',index===currentStep);step.classList.toggle('is-connected',index<=currentStep&&index<steps.length-1)});
+  const advance=()=>{showStep();timelineTimer=setTimeout(()=>{if(currentStep===steps.length-1){timeline.classList.add('is-resetting');steps.forEach(step=>step.classList.remove('is-connected','is-reached','is-current'));currentStep=0;timelineTimer=setTimeout(()=>{timeline.classList.remove('is-resetting');advance()},100)}else{currentStep++;advance()}},currentStep===steps.length-1?2000:1800)};
+  const timelineObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{clearTimeout(timelineTimer);if(entry.isIntersecting)advance()}),{threshold:.1});
+  timelineObserver.observe(timeline);
+}
 if(gallery)gallery.insertAdjacentHTML('beforeend',gallery.innerHTML);
 document.querySelectorAll('.accordion details').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.accordion details[open]').forEach(other=>{if(other!==item)other.removeAttribute('open')})}));
 
