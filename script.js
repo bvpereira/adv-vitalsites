@@ -30,6 +30,12 @@ if(gallery)gallery.insertAdjacentHTML('beforeend',gallery.innerHTML);
 document.querySelectorAll('.accordion details').forEach(item=>item.addEventListener('toggle',()=>{if(item.open)document.querySelectorAll('.accordion details[open]').forEach(other=>{if(other!==item)other.removeAttribute('open')})}));
 
 const dialog=document.querySelector('[data-privacy-dialog]');
+const locationDialog=document.querySelector('[data-location-video-dialog]');
+const locationVideo=document.querySelector('[data-location-video]');
+document.querySelector('[data-open-location-video]')?.addEventListener('click',()=>{locationDialog.showModal();document.body.classList.add('video-open');locationVideo.play().catch(()=>{})});
+document.querySelector('[data-close-location-video]')?.addEventListener('click',()=>locationDialog.close());
+locationDialog?.addEventListener('close',()=>{locationVideo.pause();locationVideo.currentTime=0;document.body.classList.remove('video-open')});
+locationDialog?.addEventListener('click',event=>{if(event.target===locationDialog){const bounds=locationDialog.getBoundingClientRect();if(event.clientX<bounds.left||event.clientX>bounds.right||event.clientY<bounds.top||event.clientY>bounds.bottom)locationDialog.close()}});
 document.querySelector('[data-open-privacy]')?.addEventListener('click',()=>dialog?.showModal());
 document.querySelector('[data-close-privacy]')?.addEventListener('click',()=>dialog?.close());
 dialog?.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
