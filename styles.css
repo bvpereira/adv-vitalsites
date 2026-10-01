@@ -37,7 +37,7 @@
 @media(max-width:480px){.professional{grid-template-columns:1fr}.team-photo{min-height:0}.numbers strong{font-size:4.5rem}}
 @media(prefers-reduced-motion:reduce){.practice-image img,.gallery-track img{transition:none}.gallery-track{animation-duration:45s!important;animation-iteration-count:infinite!important}}
 
-.principle-grid h3{text-align:center}.principle-icon img{width:27px;height:27px;filter:invert(85%) sepia(29%) saturate(559%) hue-rotate(348deg) brightness(95%)}
+.principle-grid h3,.principle-grid p{text-align:center}.principle-icon img{width:27px;height:27px;filter:invert(85%) sepia(29%) saturate(559%) hue-rotate(348deg) brightness(95%)}
 .gallery-heading>p:last-child{max-width:680px;font:400 1rem/1.75 var(--sans)}
 .approach-list article>span{font:600 2.5rem/1.2 var(--sans);color:var(--gold)}
 .contact-grid{display:block;max-width:850px}.contact-copy{max-width:760px}.contact-copy>div{justify-content:flex-start}
@@ -47,3 +47,13 @@
 .process li.is-connected:after{transform:scaleX(1)}.process li.is-reached span{background:var(--gold2);box-shadow:0 0 0 7px #e3c38a20,0 0 22px #e3c38a45}.process li.is-current span{transform:scale(1.12)}.process ol.is-resetting li:after{transition:none}
 @media(max-width:1000px){.process ol{grid-template-columns:1fr}.process li{padding-left:110px;min-height:180px}.process li span{position:absolute;left:24px;top:26px;margin:0}.process li h3,.process li p{text-align:left}.process li:not(:last-child):before,.process li:not(:last-child):after{left:56px;top:58px;width:2px;height:calc(100% + 14px);transform-origin:top}.process li:not(:last-child):after{transform:scaleY(0)}.process li.is-connected:after{transform:scaleY(1)}}
 @media(prefers-reduced-motion:reduce){.process li:after{transition-duration:1.8s!important}.process ol.is-resetting li:after{transition:none!important}}
+
+@media(max-width:760px){
+  .hero-actions{align-items:center;justify-content:center;text-align:center}
+  .about-copy{order:1}.about-image{order:2}
+  .practice-nav{grid-template-columns:1fr;overflow:visible}
+  .practice-nav a{justify-content:center;border-right:0;border-bottom:1px solid var(--line)}
+  .practice-nav a:last-child{border-bottom:0}
+  .practice-detail .practice-copy{order:1}
+  .practice-detail .practice-image,.practice-detail.reverse .practice-image{order:2}
+}
