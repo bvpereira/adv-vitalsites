@@ -65,9 +65,8 @@ body.video-open{overflow:hidden}.office-actions{display:flex;justify-content:cen
 .hero-brand-emblem{position:relative;width:min(100%,620px);aspect-ratio:1;display:grid;place-items:center;isolation:isolate}
 .hero-brand-emblem:before{position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle,#c99a5714,transparent 70%);content:"";z-index:-1}
 .hero-brand-logo{width:74%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 30px #0005)}
-.hero-brand-orbit{position:absolute;inset:0;width:100%;height:100%;overflow:visible;animation:brand-orbit 70s linear infinite}
-.hero-brand-orbit text{fill:var(--gold2);font:600 15px var(--sans);letter-spacing:3px}
-.hero-orbit-guide{fill:none;stroke:#e3c38a26;stroke-width:1}
-@keyframes brand-orbit{to{transform:rotate(360deg)}}
-@media(max-width:760px){.hero-brand-visual{order:-1;padding:0;margin:0 auto 24px;width:min(100%,400px)}.hero-copy{order:1}.hero-grid{padding-top:105px;gap:0;padding-bottom:60px}.hero-brand-emblem{width:100%}.hero-brand-logo{width:76%}.hero-brand-orbit text{font-size:16px;letter-spacing:2.5px}}
-@media(prefers-reduced-motion:reduce){.hero-brand-orbit{animation-duration:90s!important;animation-iteration-count:infinite!important}}
+.hero-brand-messages{position:absolute;top:89%;left:0;width:100%;display:grid;place-items:center;color:var(--gold2);font:600 15px/1.6 var(--sans);letter-spacing:3px;text-align:center;text-transform:uppercase}
+.hero-brand-messages span{grid-area:1/1;opacity:0;animation:brand-message 15s linear infinite}.hero-brand-messages span:nth-child(2){animation-delay:5s}.hero-brand-messages span:nth-child(3){animation-delay:10s}
+@keyframes brand-message{0%{opacity:0;transform:translateY(6px)}4%,25%{opacity:1;transform:translateY(0)}30%,100%{opacity:0;transform:translateY(-6px)}}
+@media(max-width:760px){.hero-brand-visual{order:-1;padding:0;margin:0 auto 24px;width:min(100%,400px)}.hero-copy{order:1}.hero-grid{padding-top:105px;gap:0;padding-bottom:60px}.hero-brand-emblem{width:100%}.hero-brand-logo{width:76%}.hero-brand-messages{font-size:16px;letter-spacing:2.5px}}
+@media(prefers-reduced-motion:reduce){.hero-brand-messages span{animation-duration:15s!important;animation-iteration-count:infinite!important}}
