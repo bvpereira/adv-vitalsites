@@ -64,9 +64,9 @@ body.video-open{overflow:hidden}.office-actions{display:flex;justify-content:cen
 .hero-brand-visual{height:auto;align-self:center;align-items:center;padding-bottom:70px}
 .hero-brand-emblem{position:relative;width:min(100%,620px);aspect-ratio:1;display:grid;place-items:center;isolation:isolate}
 .hero-brand-emblem:before{position:absolute;inset:15%;border-radius:50%;background:radial-gradient(circle,#c99a5714,transparent 70%);content:"";z-index:-1}
-.hero-brand-logo{width:74%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 30px #0005)}
+.hero-brand-logo{width:92.5%;height:auto;object-fit:contain;filter:drop-shadow(0 16px 30px #0005)}
 .hero-brand-messages{position:absolute;top:89%;left:0;width:100%;display:grid;place-items:center;color:var(--gold2);font:600 15px/1.6 var(--sans);letter-spacing:3px;text-align:center;text-transform:uppercase}
 .hero-brand-messages span{grid-area:1/1;opacity:0;animation:brand-message 9.75s linear infinite}.hero-brand-messages span:nth-child(2){animation-delay:3.25s}.hero-brand-messages span:nth-child(3){animation-delay:6.5s}
 @keyframes brand-message{0%{opacity:0;transform:translateY(6px)}4%,25%{opacity:1;transform:translateY(0)}30%,100%{opacity:0;transform:translateY(-6px)}}
-@media(max-width:760px){.hero-brand-visual{order:-1;padding:0;margin:0 auto 24px;width:min(100%,400px)}.hero-copy{order:1}.hero-grid{padding-top:105px;gap:0;padding-bottom:60px}.hero-brand-emblem{width:100%}.hero-brand-logo{width:76%}.hero-brand-messages{font-size:16px;letter-spacing:2.5px}}
+@media(max-width:760px){.hero-brand-visual{order:-1;padding:0;margin:0 auto calc(22.4px + min(44px,calc(11vw - 3.3px)));width:min(100%,400px)}.hero-copy{order:1}.hero-grid{padding-top:105px;gap:0;padding-bottom:60px}.hero-brand-emblem{width:100%}.hero-brand-logo{width:76%}.hero-brand-messages{font-size:16px;letter-spacing:2.5px}}
 @media(prefers-reduced-motion:reduce){.hero-brand-messages span{animation-duration:9.75s!important;animation-iteration-count:infinite!important}}
