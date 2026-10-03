@@ -20,10 +20,37 @@ const gallery=document.querySelector('[data-gallery-track]');
 const timeline=document.querySelector('.process ol');
 if(timeline){
   const steps=[...timeline.querySelectorAll('li')];
-  let timelineTimer,currentStep=0;
+  const mobileTimeline=window.matchMedia('(max-width:1000px)');
+  let timelineTimer,currentStep=0,timelineVisible=false,scrollFrame=0;
   const showStep=()=>steps.forEach((step,index)=>{step.classList.toggle('is-reached',index<=currentStep);step.classList.toggle('is-current',index===currentStep);step.classList.toggle('is-connected',index<=currentStep&&index<steps.length-1)});
   const advance=()=>{showStep();timelineTimer=setTimeout(()=>{if(currentStep===steps.length-1){timeline.classList.add('is-resetting');steps.forEach(step=>step.classList.remove('is-connected','is-reached','is-current'));currentStep=0;timelineTimer=setTimeout(()=>{timeline.classList.remove('is-resetting');advance()},100)}else{currentStep++;advance()}},currentStep===steps.length-1?2000:1800)};
-  const timelineObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{clearTimeout(timelineTimer);if(entry.isIntersecting)advance()}),{threshold:.1});
+  const updateScrollProgress=()=>{
+    scrollFrame=0;
+    if(!mobileTimeline.matches)return;
+    const focusLine=window.innerHeight*.6;
+    const centers=steps.map(step=>{const bounds=step.querySelector('span').getBoundingClientRect();return bounds.top+bounds.height/2});
+    currentStep=Math.max(0,centers.findLastIndex(center=>center<=focusLine));
+    steps.forEach((step,index)=>{
+      step.classList.toggle('is-reached',centers[index]<=focusLine);
+      step.classList.toggle('is-current',index===currentStep&&centers[0]<=focusLine);
+      step.classList.remove('is-connected');
+      const progress=index<steps.length-1?Math.max(0,Math.min(1,(focusLine-centers[index])/(centers[index+1]-centers[index]))):0;
+      step.style.setProperty('--scroll-progress',progress);
+    });
+  };
+  const scheduleScrollProgress=()=>{if(mobileTimeline.matches&&!scrollFrame)scrollFrame=requestAnimationFrame(updateScrollProgress)};
+  const syncTimelineMode=()=>{
+    clearTimeout(timelineTimer);
+    timeline.classList.remove('is-resetting');
+    timeline.classList.toggle('is-scroll-driven',mobileTimeline.matches);
+    if(mobileTimeline.matches)updateScrollProgress();
+    else if(timelineVisible)advance();
+  };
+  window.addEventListener('scroll',scheduleScrollProgress,{passive:true});
+  window.addEventListener('resize',scheduleScrollProgress);
+  mobileTimeline.addEventListener('change',syncTimelineMode);
+  const timelineObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{timelineVisible=entry.isIntersecting;clearTimeout(timelineTimer);if(mobileTimeline.matches)scheduleScrollProgress();else if(timelineVisible)advance()}),{threshold:.1});
+  syncTimelineMode();
   timelineObserver.observe(timeline);
 }
 if(gallery)gallery.insertAdjacentHTML('beforeend',gallery.innerHTML);
