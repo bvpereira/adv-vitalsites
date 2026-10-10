@@ -51,7 +51,7 @@ body.video-open{overflow:hidden}.office-actions{display:flex;justify-content:cen
 @media(max-width:1000px){.process ol{grid-template-columns:1fr}.process li{padding-left:110px;min-height:180px}.process li span{position:absolute;left:24px;top:26px;margin:0}.process li h3,.process li p{text-align:left}.process li:not(:last-child):before,.process li:not(:last-child):after{left:56px;top:58px;width:2px;height:calc(100% + 14px);transform-origin:top}.process li:not(:last-child):after{transform:scaleY(0)}.process li.is-connected:after{transform:scaleY(1)}}
 @media(prefers-reduced-motion:reduce){.process li:after{transition-duration:1.8s!important}.process ol.is-resetting li:after{transition:none!important}}
 .process ol.is-scroll-driven li:not(:last-child):after{transform:scaleY(var(--scroll-progress,0));transition:none!important}
-.confidentiality-note{display:flex;align-items:center;gap:24px;margin-top:40px;padding:0}
+.confidentiality-note{display:flex;align-items:center;gap:24px;margin-top:56px;padding:0}
 .confidentiality-icon{display:grid;flex:0 0 58px;width:58px;height:58px;border-radius:50%;background:var(--navy);place-items:center}
 .confidentiality-icon svg{width:28px;height:28px;fill:none;stroke:var(--gold2);stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
 .confidentiality-note .eyebrow{margin:0 0 10px}.confidentiality-note h3{margin:0 0 10px;font-size:clamp(1.5rem,2.3vw,1.9rem);line-height:1.2}.confidentiality-note div>p:last-child{max-width:850px;margin:0;color:var(--muted);font-size:.9rem;line-height:1.8}
