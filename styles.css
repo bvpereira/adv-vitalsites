@@ -55,6 +55,7 @@ body.video-open{overflow:hidden}.office-actions{display:flex;justify-content:cen
 .confidentiality-icon{display:grid;flex:0 0 58px;width:58px;height:58px;border-radius:50%;background:var(--navy);place-items:center}
 .confidentiality-icon svg{width:28px;height:28px;fill:none;stroke:var(--gold2);stroke-width:1.45;stroke-linecap:round;stroke-linejoin:round}
 .confidentiality-note .eyebrow{margin:0 0 10px}.confidentiality-note h3{margin:0 0 10px;font-size:clamp(1.5rem,2.3vw,1.9rem);line-height:1.2}.confidentiality-note div>p:last-child{max-width:850px;margin:0;color:var(--muted);font-size:.9rem;line-height:1.8}
+@media(min-width:761px){.confidentiality-note>div{flex:1;min-width:0}.confidentiality-note div>p:last-child{max-width:none}}
 @media(max-width:760px){.confidentiality-note{align-items:flex-start;gap:18px}.confidentiality-icon{flex-basis:46px;width:46px;height:46px}.confidentiality-note .eyebrow{font-size:.6rem;letter-spacing:.16em}}
 
 @media(max-width:760px){
