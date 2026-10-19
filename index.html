@@ -81,6 +81,20 @@
   <footer class="site-footer"><div class="container footer-main"><div class="footer-brand"><img src="assets/logo-vital-transparent.png" alt="Vital Advogados" width="176" height="176"><p>Escritório de advocacia em Rio das Ostras – RJ, com atendimento presencial e online em todo o Brasil.</p></div><div><h2>Institucional</h2><a href="#sobre">O escritório</a><a href="#equipe">Equipe</a><a href="#localizacao">Localização</a><a href="#faq">Perguntas frequentes</a></div><div><h2>Áreas</h2><a href="#familia">Família</a><a href="#consumidor">Consumidor</a><a href="#trabalhista">Trabalhista</a><a href="#previdenciario">Previdenciário</a></div><div><h2>Contato</h2><p>(22) 99999-8888</p><p>@vitaladvogados.rj</p><p>Rua João Viana, 10 · Centro<br>Rio das Ostras – RJ</p><p>Seg. a sex., 09h às 18h</p></div></div><div class="container footer-bottom"><p>Vital Advogados · OAB/RJ · Conteúdo informativo</p><p>© <span data-year>2026</span> Todos os direitos reservados.</p><button data-open-privacy>Política de privacidade</button></div></footer>
   <dialog class="privacy-dialog" data-privacy-dialog><button class="dialog-close" aria-label="Fechar" data-close-privacy>×</button><p class="eyebrow">Privacidade</p><h2>Política de privacidade</h2><p>Texto provisório. Antes de publicar formulários ou ferramentas de análise, inserir a política definitiva conforme os dados efetivamente coletados.</p><p>Enquanto esta página não possui formulário, nenhuma informação pessoal é solicitada diretamente pelo site.</p></dialog>
   <dialog class="location-video-dialog" aria-label="Vídeo: como chegar ao escritório" data-location-video-dialog><button class="video-close" type="button" aria-label="Fechar vídeo" data-close-location-video>×</button><video controls playsinline preload="none" data-location-video src="assets/video-localizacao.mp4"></video></dialog>
+  <dialog class="prototype-dialog" aria-labelledby="prototype-title" aria-describedby="prototype-description" data-prototype-dialog>
+    <button class="prototype-close" type="button" aria-label="Fechar aviso de protótipo" data-close-prototype autofocus>×</button>
+    <p class="eyebrow">Projeto demonstrativo · Portfólio</p>
+    <h2 id="prototype-title">Este site é um <em>protótipo.</em></h2>
+    <div id="prototype-description"><p>Este site foi desenvolvido exclusivamente como um projeto de portfólio, para demonstrar soluções de design, navegação e funcionalidades.</p><p>Os nomes, informações, imagens, números e dados de contato apresentados são fictícios e/ou utilizados apenas para fins ilustrativos. Eles não representam um escritório real nem uma oferta de serviços jurídicos.</p><p>Explore a experiência como uma demonstração do que pode ser criado para um projeto real.</p></div>
+    <button class="button gold" type="button" data-close-prototype>Entendi, explorar protótipo</button>
+  </dialog>
+  <script>
+    const prototypeDialog=document.querySelector('[data-prototype-dialog]');
+    prototypeDialog.showModal();
+    document.body.classList.add('prototype-open');
+    prototypeDialog.querySelectorAll('[data-close-prototype]').forEach(button=>button.addEventListener('click',()=>prototypeDialog.close()));
+    prototypeDialog.addEventListener('close',()=>document.body.classList.remove('prototype-open'));
+  </script>
   <script src="script.js" defer></script>
 </body>
 </html>
