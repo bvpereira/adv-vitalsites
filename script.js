@@ -1,3 +1,13 @@
+const prototypeDialog=document.querySelector('[data-prototype-dialog]');
+if(prototypeDialog){
+  prototypeDialog.querySelectorAll('[data-close-prototype]').forEach(button=>button.addEventListener('click',()=>prototypeDialog.close()));
+  prototypeDialog.addEventListener('close',()=>document.body.classList.remove('prototype-open'));
+  // Apply scroll locking before layout, then let the browser paint once before
+  // showModal performs its focus/layout work. Do not force layout while parsing.
+  document.body.classList.add('prototype-open');
+  requestAnimationFrame(()=>requestAnimationFrame(()=>prototypeDialog.showModal()));
+}
+
 const header=document.querySelector('[data-header]');
 const menuButton=document.querySelector('[data-menu-toggle]');
 const nav=document.querySelector('[data-nav]');
@@ -43,7 +53,7 @@ if(timeline){
     clearTimeout(timelineTimer);
     timeline.classList.remove('is-resetting');
     timeline.classList.toggle('is-scroll-driven',mobileTimeline.matches);
-    if(mobileTimeline.matches)updateScrollProgress();
+    if(mobileTimeline.matches)scheduleScrollProgress();
     else if(timelineVisible)advance();
   };
   window.addEventListener('scroll',scheduleScrollProgress,{passive:true});
